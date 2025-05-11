@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {StatusBar} from 'react-native';
-import OnboardingScreen from '../../screens/Auth/Onboarding';
 import AppStack from '../AppStack';
 
 const RootNavigator = () => {

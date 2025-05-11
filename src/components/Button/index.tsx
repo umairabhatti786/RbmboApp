@@ -5,7 +5,6 @@ import { ButtonProps } from "../../utils/Types";
 import { theme } from "../../utils/Themes";
 import sizeHelper from "../../utils/Helpers";
 import { fonts } from "../../utils/Themes/fonts";
-
 const CustomButton = ({
   text,
   onPress,

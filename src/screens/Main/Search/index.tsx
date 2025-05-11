@@ -1,35 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from 'react-native';
-import sizeHelper from '../../../utils/Helpers';
-import ScreenLayout from '../../../components/ScreenLayout';
+import React, { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import sizeHelper from "../../../utils/Helpers";
+import ScreenLayout from "../../../components/ScreenLayout";
 
-const SearchScreen = ({navigation}: any) => {
-  return (
-    <ScreenLayout
-      style={{
-        flex: 1,
-        paddingHorizontal: sizeHelper.calWp(50),
-        paddingTop: sizeHelper.calHp(60),
-        gap: sizeHelper.calWp(30),
-      }}>
-        
-      </ScreenLayout>
-  );
+const SearchScreen = ({ navigation }: any) => {
+  return <ScreenLayout>
+    
+  </ScreenLayout>;
 };
 
 export default SearchScreen;
 
-const styles = StyleSheet.create({
-  botttom: {
-    gap: sizeHelper.calHp(20),
-    paddingBottom: '10%',
-  },
-});
+const styles = StyleSheet.create({});

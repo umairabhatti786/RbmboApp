@@ -1,61 +1,69 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Image, Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
-import CustomText from '../../components/Text';
-import {theme} from '../../utils/Themes';
-import sizeHelper from '../../utils/Helpers';
-import HomeScreen from '../../screens/Main/Home';
-import images from '../../utils/Constants/images';
-import icons from '../../utils/Constants/icons';
-import FavouritesScreen from '../../screens/Main/Favourites';
-import SearchScreen from '../../screens/Main/Search';
-import MyCartScreen from '../../screens/Main/MyCart';
-import ProfileScreen from '../../screens/Main/Profile';
-import {fonts} from '../../utils/Themes/fonts';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image, Platform, StyleSheet, TouchableOpacity } from "react-native";
+import CustomText from "../../components/Text";
+import { theme } from "../../utils/Themes";
+import sizeHelper from "../../utils/Helpers";
+import HomeScreen from "../../screens/Main/Home";
+import SearchScreen from "../../screens/Main/Search";
+import { fonts } from "../../utils/Themes/fonts";
+import { icons } from "../../assets/icons";
+import LinearGradient from "react-native-linear-gradient";
+import ChatScreen from "../../screens/Main/Chat";
+import { useTranslation } from "react-i18next";
 
-const BottomTab = ({navigation}: any) => {
+import "../../i18n/i18n"; // make sure i18n is loaded
+import LikedScreen from "../../screens/Main/Liked";
+import BoxScreen from "../../screens/Main/Box";
+
+const BottomTab = ({ navigation }: any) => {
+  const { t, i18n } = useTranslation();
+
   const Bottom = createBottomTabNavigator();
-  const TabItem = ({focused, title, img}: any) => {
+  const TabItem = ({ focused, title, img }: any) => {
     return (
-      <View style={[style.itemStyle]}>
-        <View
-          style={{
-            width: sizeHelper.calWp(7),
-            height: sizeHelper.calWp(7),
-            borderRadius: sizeHelper.calWp(7),
-            backgroundColor: focused ? theme.colors.primary : 'transparent',
-          }}
-        />
-
+      <LinearGradient
+        colors={
+          focused ? ["#48A0D7", "#6EC8D3", "#984A8B"] : ["#ffff", "#ffff"]
+        }
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={{
+          ...style.itemStyle,
+          width: focused ? sizeHelper.calWp(160) : 40,
+        }}
+      >
         <Image
           resizeMode="contain"
           source={img}
           style={{
             ...style.img,
-            tintColor: focused ? theme.colors.primary : theme.colors.secondry,
+            tintColor: focused ? theme.colors.white : theme.colors.dark_gray,
           }}
         />
-        <CustomText
-          text={title}
-          fontFam={fonts.Poppins_SemiBold}
-          fontWeight="600"
-          size={18}
-          color={focused ? theme.colors.primary : theme.colors.secondry}
-        />
-      </View>
+        {focused && (
+          <CustomText
+            text={title}
+            fontFam={fonts.DMSans_SemiBold}
+            fontWeight="600"
+            size={20}
+            color={theme.colors.white}
+          />
+        )}
+      </LinearGradient>
     );
   };
 
   return (
     <Bottom.Navigator
       initialRouteName="Home"
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         animationEnabled: false,
         gestureEnabled: true,
         keyboardHidesTabBar: true,
 
-        cardStyleInterpolator: ({current, next, layouts}: any) => {
+        cardStyleInterpolator: ({ current, next, layouts }: any) => {
           return {
             cardStyle: {
               transform: [
@@ -71,132 +79,139 @@ const BottomTab = ({navigation}: any) => {
         },
         tabBarStyle: {
           backgroundColor: theme.colors.background,
-          justifyContent: 'center',
-          alignItems: 'center',
-          shadowOffset: {width: 0, height: 5},
+          justifyContent: "center",
+          position: "absolute",
+          alignItems: "center",
+          marginHorizontal: sizeHelper.calWp(30),
+          marginBottom: sizeHelper.calHp(50),
+          shadowOffset: { width: 0, height: 5 },
           shadowOpacity: 1,
-          shadowColor: theme.colors.black,
+          shadowColor: theme.colors.black + "50",
           shadowRadius: 8,
           elevation: 10,
-          height: sizeHelper.calHp(130),
+          height: sizeHelper.calHp(95),
           borderTopWidth: -1,
-          paddingTop: sizeHelper.calHp(Platform.OS=="ios" ? 20:30),
+          borderRadius: 999,
+          paddingHorizontal: sizeHelper.calWp(30),
         },
 
         headerShown: false,
-      })}>
-      {/* Home Tab */}
+      })}
+    >
       <Bottom.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <TabItem
-                title={'Home'}
+                title={t("home_bottom_tab")}
                 colors={theme.colors}
-                img={focused ? icons.filled_home : icons.filled_home}
+                img={focused ? icons.home : icons.home}
                 focused={focused}
               />
             );
           },
         }}
       />
-      {/* Calendar Tab */}
       <Bottom.Screen
-        name="Favourites"
-        component={FavouritesScreen}
+        name="liked"
+        component={LikedScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <TabItem
                 colors={theme.colors}
-                title={'Favourites'}
-                img={
-                  focused ? icons.unfilled_favurits : icons.unfilled_favurits
-                }
+                title={t("liked_bottom_tab")}
+                img={icons.heart}
                 focused={focused}
               />
             );
           },
         }}
       />
-      {/* AddEvent Tab */}
 
       <Bottom.Screen
         name="Search"
         component={SearchScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
-              <TouchableOpacity
+              <LinearGradient
+                colors={["#984A8B", "#48A0D7", "#6EC8D3"]} // Adjust colors to your needs
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
                 style={{
-                  position: 'absolute',
-                  top: sizeHelper.calHp(Platform.OS=="ios"?  -50:-60),
-                  height: sizeHelper.calHp(110),
-                  width: sizeHelper.calHp(110),
-                  borderRadius: sizeHelper.calWp(110),
-                  backgroundColor: theme.colors.background,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
+                  position: "absolute",
+                  top: sizeHelper.calHp(Platform.OS == "ios" ? -50 : -60),
+                  height: sizeHelper.calHp(90),
+                  width: sizeHelper.calHp(90),
+                  borderRadius: sizeHelper.calWp(90),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  shadowOffset: { width: 0, height: 5 },
+                  shadowOpacity: 8,
+                  shadowColor: theme.colors.black + "50",
+                  shadowRadius: 5,
+                  elevation: 5,
+                  // paddingLeft:20
+                }}
+              >
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('CreateEvent')}
                   style={{
                     height: sizeHelper.calHp(80),
                     width: sizeHelper.calHp(80),
                     borderRadius: sizeHelper.calWp(80),
-                    backgroundColor: theme.colors.primary,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
+                    backgroundColor: theme.colors.white,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    // marginLeft:100
+                  }}
+                >
                   <Image
-                    resizeMode="contain"
-                    source={icons.search}
+                    source={icons.add}
                     style={{
-                      height: sizeHelper.calHp(34),
-                      width: sizeHelper.calHp(34),
-                      tintColor: theme.colors.white,
+                      width: sizeHelper.calWp(40),
+                      height: sizeHelper.calWp(40),
                     }}
                   />
                 </TouchableOpacity>
-              </TouchableOpacity>
+              </LinearGradient>
             );
           },
         }}
       />
-      {/* Contacts Tab */}
       <Bottom.Screen
-        name="MyCart"
-        component={MyCartScreen}
+        name="boxScreen"
+        component={BoxScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <TabItem
                 colors={theme.colors}
-                title={'My Cart'}
-                img={icons.unfilled_cart}
+                title={t("box_bottom_tab")}
+                img={icons.box}
                 focused={focused}
               />
             );
           },
         }}
       />
-      {/* profile Tab */}
       <Bottom.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ChatScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({focused}) => {
+          tabBarIcon: ({ focused }) => {
             return (
               <TabItem
                 colors={theme.colors}
-                title={'Profile'}
-                img={icons.unfilled_user}
+                title={t("chat_bottom_tab")}
+                img={icons.chat}
                 focused={focused}
               />
             );
@@ -210,16 +225,18 @@ export default BottomTab;
 
 const style = StyleSheet.create({
   itemStyle: {
-    width: sizeHelper.calWp(130),
-    backgroundColor: 'transparent', // Semi-transparent background
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    gap: sizeHelper.calHp(7),
+    height: sizeHelper.calHp(80),
+    backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: sizeHelper.calHp(10),
+    flexDirection: "row",
+    borderRadius: 999,
+    marginTop: sizeHelper.calHp(35),
   },
   img: {
-    height: sizeHelper.calHp(33),
-    width: sizeHelper.calHp(33),
+    height: sizeHelper.calHp(30),
+    width: sizeHelper.calHp(30),
   },
   tabBarStyle: {},
 });

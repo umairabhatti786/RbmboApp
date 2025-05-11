@@ -93,10 +93,6 @@ export type ScreenType = {
 
 
 export type AppStackParamList = {
-  Onboarding: undefined;
-  LoginAndSignup:undefined
-  Login:undefined
-  Signup:undefined
   BottomTab:undefined
  
 };

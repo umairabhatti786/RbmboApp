@@ -1,0 +1,15 @@
+export const icons = {
+  next_arrow: require("../icons/next_arrow.png"),
+  back_arrow: require("../icons/back_arrow.png"),
+  home: require("../icons/home.png"),
+  share: require("../icons/share.png"),
+  star: require("../icons/star.png"),
+  unfilled_heart: require("../icons/unfilled_heart.png"),
+  negotiable: require("../icons/negotiable.png"),
+  pin: require("../icons/pin.png"),
+  drop_down: require("../icons/drop_down.png"),
+  add: require("../icons/add.png"),    
+  heart: require("../icons/heart.png"),
+  chat: require("../icons/chat.png"),
+  box: require("../icons/box.png"),
+};

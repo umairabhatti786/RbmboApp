@@ -1,15 +1,14 @@
 export const theme={
 
     colors:{
-        primary:"#2DC653",
-        dark_primary:"#155D27",
-        light_primary:"#92E6A7",
-        secondry:"#10451D",
+        primary:"#984A8B",
         black:"#000000",
-        text_black:"#404040",
-        gray:"#B6B6B7",
+        text_black:"#212121",
+        dark_gray:"#646464",
+        gray:"#4D4D4D",
         white:"#ffff",
-        background:"#FEFEFE"
+        background:"#FEFEFE",
+        alert:"#F55656"
         
     }
 
