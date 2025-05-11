@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Rbmbo.app"
-               BlueprintName = "Rbmbo"
-               ReferencedContainer = "container:Rbmbo.xcodeproj">
+               BuildableName = "Tawadoo.app"
+               BlueprintName = "Tawadoo"
+               ReferencedContainer = "container:Tawadoo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "RbmboTests.xctest"
-               BlueprintName = "RbmboTests"
-               ReferencedContainer = "container:Rbmbo.xcodeproj">
+               BuildableName = "TawadooTests.xctest"
+               BlueprintName = "TawadooTests"
+               ReferencedContainer = "container:Tawadoo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Rbmbo.app"
-            BlueprintName = "Rbmbo"
-            ReferencedContainer = "container:Rbmbo.xcodeproj">
+            BuildableName = "Tawadoo.app"
+            BlueprintName = "Tawadoo"
+            ReferencedContainer = "container:Tawadoo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Rbmbo.app"
-            BlueprintName = "Rbmbo"
-            ReferencedContainer = "container:Rbmbo.xcodeproj">
+            BuildableName = "Tawadoo.app"
+            BlueprintName = "Tawadoo"
+            ReferencedContainer = "container:Tawadoo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
